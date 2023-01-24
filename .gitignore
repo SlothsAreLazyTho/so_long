@@ -1,4 +1,8 @@
+#Directories
+.vscode
 bin/
+
+#Files
 so_long
 *.out
 *.o

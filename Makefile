@@ -1,40 +1,72 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: macbook <macbook@student.codam.nl>           +#+                      #
+#                                                    +#+                       #
+#    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
+#    Updated: 2023/01/24 15:00:17 by macbook       ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = so_long
-INCLUDE =./include
 
+# Flags
 CFLAGS = -Wall -Wextra -Werror
+DFLAGS = -g -fsanitize=address
 OPENGL_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
+# Colours
+RESET = \033[0m
+GREEN = \033[0;92m
+
+# Files
+INCLUDE =./include
+
 SRC =	ft_main.c \
-		ft_map.c \
 		ft_vector.c \
+		ft_map.c \
+		ft_map_helpers.c \
+		ft_map_validation.c \
+		ft_map_path_validation.c \
 		ft_graphics.c \
 		ft_graphics_utils.c \
 
 OBJ = ${SRC:%.c=bin/%.o}
 
-LIBS = libft/libft.a MLX42/libmlx42.a
+LIBS =	libft/libft.a \
+		MLX42/libmlx42.a
 
-bin/%.o: %.c
-	gcc -I$(INCLUDE) -o $@ -c $<
+# Rules
+
+bin/%.o: src/%.c
+	@gcc -I$(INCLUDE) -o $@ -c $<
+	@echo "$(GREEN)Compiling: $(RESET)$<"
 
 $(NAME): $(OBJ)
 	@mkdir -p bin
-	@gcc -I$(INCLUDE) $(OBJ) $(LIBS) $(OPENGL_FLAGS) -o $(NAME)
-	@echo "Enjoy playing buddy!"
+	@gcc -I$(INCLUDE) $(CFLAGS) $(OBJ) $(LIBS) $(OPENGL_FLAGS) -o $(NAME)
 
-all: $(NAME)
+test: $(OBJ)
+	@mkdir -p bin
+	@gcc -I$(INCLUDE) $(DFLAGS) $(OBJ) $(LIBS) $(OPENGL_FLAGS) -o $(NAME)
+
+
+all: lib $(NAME)
 
 lib:
-	@make all -C MLX42
-	@make all -C libft
+	@$(MAKE) -C MLX42 all
+	@$(MAKE) -C libft all
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
+	@$(MAKE) -C libft clean
+	@$(MAKE) -C MLX42 clean
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME) $(LIBS)
 
-re: clean all
+re: fclean all
 
-.PHONY: lib all clean fclean re
+.PHONY: lib test all clean fclean re

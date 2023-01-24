@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 19:00:38 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/12 16:47:11 by macbook       ########   odam.nl         */
+/*   Updated: 2023/01/19 15:22:19 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,20 @@ mlx_image_t	*draw_tile(mlx_t *mlx, int width, int height, t_vector *vec)
 		return (NULL);
 	ft_memset(img->pixels, 255, width * height * sizeof(int));
 	mlx_image_to_window(mlx, img, vec->x, vec->y);
-	return (img);	
+	return (img);
+}
+
+mlx_image_t	*draw_collectable(mlx_t *mlx, int width, int height, t_vector *vec)
+{
+	mlx_image_t		*img;
+	mlx_texture_t	*tex;
+
+	img = mlx_new_image(mlx, width, height);
+	if (!img)
+		return (NULL);
+	ft_memset(img->pixels, 192, width * height * sizeof(int));
+	mlx_image_to_window(mlx, img, vec->x, vec->y);
+	return (img);
 }
 
 mlx_image_t	*draw_image(mlx_t *mlx, char *filename, t_vector *vec)
