@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 16:08:25 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 15:52:57 by macbook       ########   odam.nl         */
+/*   Updated: 2023/01/24 17:45:45 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	validate_filename(char *filename, t_map *map)
 t_map	*create_map(char *filename)
 {
 	t_map	*map;
+	int		fd;
 
 	map = malloc(sizeof(t_map));
 	if (!map)
@@ -71,6 +72,7 @@ t_map	*create_map(char *filename)
 	return (map);
 }
 
+//Add extra protection for file descriptor safety.
 t_map	*load_map(char *filename)
 {
 	char	*str;
@@ -79,10 +81,10 @@ t_map	*load_map(char *filename)
 	int		i;
 
 	i = 0;
-	fd = open(filename, O_RDONLY);
 	map = create_map(filename);
+	fd = open(filename, O_RDONLY);
 	if (!map || fd < 0)
-		return (free(map), NULL);
+		return (free_map(map), NULL);
 	if (!map->layout || map->height <= 0)
 		return (NULL);
 	str = get_next_line(fd);

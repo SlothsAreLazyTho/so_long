@@ -6,7 +6,7 @@
 #    By: macbook <macbook@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
-#    Updated: 2023/01/24 15:00:17 by macbook       ########   odam.nl          #
+#    Updated: 2023/01/24 16:09:28 by cbijman       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 # Flags
 CFLAGS = -Wall -Wextra -Werror
 DFLAGS = -g -fsanitize=address
-OPENGL_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+OPENGL_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 # Colours
 RESET = \033[0m

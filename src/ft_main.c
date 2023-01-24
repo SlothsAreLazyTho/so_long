@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 15:03:24 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 15:51:31 by macbook       ########   odam.nl         */
+/*   Updated: 2023/01/24 17:46:04 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	test(int argc, char **argv)
 	map = load_map(argv[1]);
 	if (!map)
 		return (perror("Map Error"), 1);
-	validate_map(map);
-	//open_window(map);
+	//if (!validate_map(map))
+	//	return (perror("Map Error"), 1);
+	open_window(map);
 	free_map(map);
-	system("leaks so_long | grep \"^Process\"");
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:50:50 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 14:59:14 by macbook       ########   odam.nl         */
+/*   Updated: 2023/01/24 17:38:18 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_map
 	char		**layout;
 	t_coin		*coins;
 	t_player	*player;
+	mlx_t		*handle;
 	int			width;
 	int			height;
 }	t_map;
@@ -52,7 +53,6 @@ typedef struct s_map
 
 //Map
 t_map		*load_map(char *filename);
-void		load_map_objects(t_map *map);
 void		free_map(t_map *map);
 
 //Map info

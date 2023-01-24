@@ -1,23 +1,23 @@
-	//int	i;
-	//int	j;
-	//int	objects[4];
-	//i = -1;
-	//objects[PLAYER] = 0;
-	//objects[EXIT] = 0;
-	//objects[COLLECT] = 0;
-	//while (++i < map->height)
-	//{
-	//	j = 0;
-	//	while (map->layout[i][j])
-	//	{
-	//		if (map->layout[i][j] == 'P')
-	//			objects[PLAYER]++;
-	//		if (map->layout[i][j] == 'E')
-	//			objects[EXIT]++;
-	//		if (map->layout[i][j] == 'C')
-	//			objects[COLLECT]++;
-	//		j++;
-	//	}
-	//}
-	//if (objects[PLAYER] != 1 || objects[EXIT] != 1 || objects[COLLECT] < 1)
-	//	return (0);
+//int	i;
+//int	j;
+//int	objects[4];
+//i = -1;
+//objects[PLAYER] = 0;
+//objects[EXIT] = 0;
+//objects[COLLECT] = 0;
+//while (++i < map->height)
+//{
+//	j = 0;
+//	while (map->layout[i][j])
+//	{
+//		if (map->layout[i][j] == 'P')
+//			objects[PLAYER]++;
+//		if (map->layout[i][j] == 'E')
+//			objects[EXIT]++;
+//		if (map->layout[i][j] == 'C')
+//			objects[COLLECT]++;
+//		j++;
+//	}
+//}
+//if (objects[PLAYER] != 1 || objects[EXIT] != 1 || objects[COLLECT] < 1)
+//	return (0);

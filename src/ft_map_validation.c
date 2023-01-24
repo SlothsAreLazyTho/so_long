@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/16 13:06:18 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 15:52:44 by macbook       ########   odam.nl         */
+/*   Updated: 2023/01/24 17:45:56 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ int	validate_borders(t_map *map)
 	while (++i < map->height)
 	{
 		if (i == 0 || i == (map->height - 1))
+		{
 			if (ft_strchr(map->layout[i], '0'))
 				return (0);
+		}
 		if (i != 0 || i != (map->height - 1))
+		{
 			if (map->layout[i][0] == '0'
-				&& map->layout[i][map->width - 1] == '0')
+				|| map->layout[i][map->width - 1] == '0')
 				return (0);
+		}
 	}
 	return (1);
 }
