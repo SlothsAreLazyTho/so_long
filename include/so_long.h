@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:50:50 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 17:38:18 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/01/25 16:24:44 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "MLX42.h"
 
+# define DEBUG
 # define FILE_EXTENSION ".ber"
 # define PIXEL_WIDTH 32
 # define PIXEL_HEIGHT 32
@@ -75,6 +76,11 @@ int			open_window(t_map *map);
 mlx_image_t	*draw_tile(mlx_t *mlx, int width, int height, t_vector *vec);
 mlx_image_t	*draw_collectable(mlx_t *mlx, int width, int height, t_vector *vec);
 mlx_image_t	*draw_image(mlx_t *mlx, char *filename, t_vector *vec);
+
+//Drawing utils.
+void		mlx_draw_line(mlx_image_t *img, int y, int height);
+void		mlx_draw_rectangle(mlx_image_t *img, int xy[2], int wh[2]);
+void		mlx_draw_rectangle_coords(mlx_image_t *img, int x, int y, int width, int height);
 
 //Vector
 t_vector	*create_vector(int x, int y);

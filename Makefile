@@ -6,7 +6,7 @@
 #    By: macbook <macbook@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
-#    Updated: 2023/01/24 16:09:28 by cbijman       ########   odam.nl          #
+#    Updated: 2023/01/25 16:13:45 by cbijman       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ INCLUDE =./include
 
 SRC =	ft_main.c \
 		ft_vector.c \
+		ft_draw_utils.c \
 		ft_map.c \
 		ft_map_helpers.c \
 		ft_map_validation.c \

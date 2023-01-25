@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 17:47:36 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 18:21:40 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/01/25 18:29:54 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,22 @@ mlx_image_t *load_spritesheet(mlx_t *mlx, char *filename)
 {
 	mlx_image_t		*img;
 	mlx_texture_t	*tex;
+	uint32_t		xy[2];
+	uint32_t		wh[2];
+	int				column = 2;
+	int				row = 3;
 
-	int posx = 32;
-	int posy = 32;
-
-	uint32_t xy[2] = { 64, 64 };
-	uint32_t wh[2] = { posx + 32, posy + 32 };
+	wh[0] = 48;
+	wh[1] = 48;
+	xy[0] = 48 * column;
+	xy[1] = 48 * row;
 
 	tex = mlx_load_png(filename);
 	if (!tex)
 		return (NULL);
 	img = mlx_texture_area_to_image(mlx, tex, xy, wh);
-	mlx_image_to_window(mlx, img, 10, 10);
+	mlx_image_to_window(mlx, img, 16, 16);
+	mlx_draw_rectangle_coords(img, 0, 0, 48 * 5, 48 * 5);
 	return (img);
 }
 
@@ -97,7 +101,8 @@ int	open_window(t_map *map)
 
 	ft_printf("[MLX42] Filename: %s\n", map->filename);
 	ft_printf("[MLX42] Window width: %d, Window height: %d\n", (map->width - 1) * 32, map->height * 32);
-	map->handle = mlx_init(map->width * 16, map->height * 16, "So Long!", true);
+	//map->handle = mlx_init(map->width * 16, map->height * 16, "So Long!", true);
+	map->handle = mlx_init(1366, 768, "So Long!", true);
 	if (!map->handle)
 		return (1);
 	//images = draw_map(map, handle);
