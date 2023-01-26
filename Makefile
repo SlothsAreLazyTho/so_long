@@ -6,7 +6,7 @@
 #    By: macbook <macbook@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
-#    Updated: 2023/01/25 16:13:45 by cbijman       ########   odam.nl          #
+#    Updated: 2023/01/26 11:00:53 by cbijman       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,11 @@ GREEN = \033[0;92m
 # Files
 INCLUDE =./include
 
+HEADER = ./include/so_long.h
+
 SRC =	ft_main.c \
 		ft_vector.c \
+		ft_player.c \
 		ft_draw_utils.c \
 		ft_map.c \
 		ft_map_helpers.c \
@@ -41,7 +44,7 @@ LIBS =	libft/libft.a \
 
 # Rules
 
-bin/%.o: src/%.c
+bin/%.o: src/%.c $(HEADER)
 	@gcc -I$(INCLUDE) -o $@ -c $<
 	@echo "$(GREEN)Compiling: $(RESET)$<"
 
@@ -54,7 +57,7 @@ test: $(OBJ)
 	@gcc -I$(INCLUDE) $(DFLAGS) $(OBJ) $(LIBS) $(OPENGL_FLAGS) -o $(NAME)
 
 
-all: lib $(NAME)
+all: $(NAME)
 
 lib:
 	@$(MAKE) -C MLX42 all
@@ -70,4 +73,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: lib test all clean fclean re
+.PHONY: test all lib clean fclean re

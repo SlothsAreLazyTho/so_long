@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/19 15:54:26 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 15:52:01 by macbook       ########   odam.nl         */
+/*   Updated: 2023/01/26 17:44:41 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,30 @@ int	get_map_object_from_map(t_map *map, char object)
 	return (k);
 }
 
-int	get_map_coins(char *filename)
+t_vector	*get_object_coords_from_map(t_map *map, char obj)
 {
-	return (get_map_object(filename, 'C'));
+	int			i;
+	int			j;
+	t_vector	*vec;
+
+	i = 0;
+	vec = create_vector(0, 0);
+	if (!vec)
+		return (NULL);
+	while (map->layout[i] != NULL)
+	{
+		j = 0;
+		while (map->layout[i][j])
+		{
+			if (map->layout[i][j] == obj)
+			{
+				vec->x = j;
+				vec->y = i;
+				return (vec);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }

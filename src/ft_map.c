@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 16:08:25 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 17:45:45 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/01/26 18:15:36 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_map	*create_map(char *filename)
 	map->layout = malloc((map->height + 1) * sizeof(char *));
 	if (!map->layout)
 		return (NULL);
-	map->coins = malloc(get_map_coins(filename) * sizeof(t_coin));
+	map->coins = malloc(get_map_object(filename, 'C') * sizeof(t_coin));
 	if (!map->coins)
 		return (NULL);
 	return (map);
@@ -92,10 +92,11 @@ t_map	*load_map(char *filename)
 	{
 		if (!process_map_line(map, str, i))
 			return (free_map(map), NULL);
+		ft_printf("[Map] %s\n", map->layout[i]);
 		i++;
 		str = get_next_line(fd);
 	}
-	map->layout[++i] = NULL;
+	map->layout[i] = NULL;
 	close(fd);
 	return (map);
 }

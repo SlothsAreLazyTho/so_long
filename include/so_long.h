@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:50:50 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/25 16:24:44 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/01/26 17:59:15 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@
 
 # define DEBUG
 # define FILE_EXTENSION ".ber"
-# define PIXEL_WIDTH 32
-# define PIXEL_HEIGHT 32
+# define TILE_SIZE		96
+# define TILE_W			32
+
+typedef enum	e_direction
+{
+	PLAYER_DOWN	 = 0,
+	PLAYER_LEFT	 = 3,
+	PLAYER_UP	 = 2,
+	PLAYER_RIGHT = 1,
+} t_player_direction;
 
 typedef struct s_vector
 {
@@ -36,17 +44,21 @@ typedef struct s_coin
 
 typedef struct s_player
 {
-	mlx_image_t	*image;
-	t_vector	*position;
+	int					x;
+	int					y;
+	int					moves;
+	mlx_image_t			*image;
+	t_player_direction	e_direction;
 }	t_player;
 
 typedef struct s_map
 {
-	char		*filename;
-	char		**layout;
+	mlx_t		*handle;
 	t_coin		*coins;
 	t_player	*player;
-	mlx_t		*handle;
+	mlx_image_t	**images;
+	char		**layout;
+	char		*filename;
 	int			width;
 	int			height;
 }	t_map;
@@ -58,9 +70,9 @@ void		free_map(t_map *map);
 
 //Map info
 int			get_map_size(char *filename);
-int			get_map_coins(char *filename);
-int			get_map_object_from_map(t_map *map, char object);
 int			get_map_object(char *filename, char object);
+int			get_map_object_from_map(t_map *map, char object);
+t_vector	*get_object_coords_from_map(t_map *map, char obj);
 
 //Validation
 int			validate_map(t_map *map);
@@ -73,17 +85,23 @@ int			validate_filename(char *filename, t_map *map);
 
 //MLX42 Graphics stuff related.
 int			open_window(t_map *map);
-mlx_image_t	*draw_tile(mlx_t *mlx, int width, int height, t_vector *vec);
-mlx_image_t	*draw_collectable(mlx_t *mlx, int width, int height, t_vector *vec);
-mlx_image_t	*draw_image(mlx_t *mlx, char *filename, t_vector *vec);
+
+//Drawing utils for MLX42
+mlx_image_t	*get_sprite_from_map(t_map *map, char *fname, int column, int row);
 
 //Drawing utils.
 void		mlx_draw_line(mlx_image_t *img, int y, int height);
 void		mlx_draw_rectangle(mlx_image_t *img, int xy[2], int wh[2]);
 void		mlx_draw_rectangle_coords(mlx_image_t *img, int x, int y, int width, int height);
+mlx_image_t	*draw_tile(mlx_t *mlx, int width, int height, t_vector *vec);
+mlx_image_t	*draw_collectable(mlx_t *mlx, int width, int height, t_vector *vec);
+mlx_image_t	*draw_image(mlx_t *mlx, char *filename, t_vector *vec);
 
 //Vector
 t_vector	*create_vector(int x, int y);
 
+//Player
+t_player	*initialize_player(t_map *map);
+void		move_direction(t_map *map, t_player_direction direction);
 
 #endif

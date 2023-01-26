@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 15:03:24 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 17:46:04 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/01/26 18:07:12 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	test(int argc, char **argv)
 	map = load_map(argv[1]);
 	if (!map)
 		return (perror("Map Error"), 1);
-	//if (!validate_map(map))
-	//	return (perror("Map Error"), 1);
+	if (!validate_map(map))
+		return (perror("Map Error"), 1);
 	open_window(map);
 	free_map(map);
 	return (EXIT_SUCCESS);
