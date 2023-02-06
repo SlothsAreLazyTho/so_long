@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:50:50 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/26 17:59:15 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/06 15:12:17 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "MLX42.h"
+# include <stdlib.h>
 
 # define DEBUG
 # define FILE_EXTENSION ".ber"
@@ -44,10 +45,10 @@ typedef struct s_coin
 
 typedef struct s_player
 {
-	int					x;
-	int					y;
 	int					moves;
-	mlx_image_t			*image;
+	mlx_image_t			*bottom_image;
+	mlx_image_t			*upper_image;
+	t_vector			*position;
 	t_player_direction	e_direction;
 }	t_player;
 
@@ -102,6 +103,7 @@ t_vector	*create_vector(int x, int y);
 
 //Player
 t_player	*initialize_player(t_map *map);
-void		move_direction(t_map *map, t_player_direction direction);
+void		move_direction(const t_map *map, t_player_direction direction);
+int			player_can_move(const t_map *map, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 17:47:36 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:16:55 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/06 15:40:23 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@
 
 mlx_image_t	*get_sprite_from_map(t_map *map, char *fname, int column, int row)
 {
-	const uint32_t	xy[2] = {96 * 1, 96 * row};
-	const uint32_t	wh[2] = {96, 96};
+	//const uint32_t	xy[2] = {96 * 1, 96 * row};
+	//const uint32_t	wh[2] = {96, 96};
+	const uint32_t	xy[2] = {50, 20};
+	const uint32_t	wh[2] = {64, 64};
 	mlx_texture_t	*tex;
 	mlx_image_t		*img;
 
 	tex = mlx_load_png(fname);
 	if (!tex)
 		return (NULL);
-	img = mlx_texture_area_to_image(map->handle, tex, xy, wh);
+	img = mlx_texture_area_to_image(map->handle, tex, (uint32_t *) xy, (uint32_t *) wh);
 	return (img);
 }
 
@@ -76,7 +78,7 @@ void	func(mlx_key_data_t keydata, void *voidmap)
 {
 	const t_map	*map = (t_map *) voidmap;
 
-	if (!map->player && !map->player->image)
+	if (!map->player && !map->player->bottom_image)
 		return ;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		exit(1);
@@ -103,9 +105,7 @@ int	open_window(t_map *map)
 	if (!map->handle)
 		return (1);
 	//draw_map(map, map->handle);
-	if (map->player != NULL)
-		printf("[Debug] Player was already initialized!\n");
-	else
+	if (!map->player)
 		map->player = initialize_player(map);
 	mlx_key_hook(map->handle, func, map);
 	mlx_loop(map->handle);

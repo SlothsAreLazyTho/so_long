@@ -6,7 +6,7 @@
 #    By: macbook <macbook@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
-#    Updated: 2023/01/26 11:00:53 by cbijman       ########   odam.nl          #
+#    Updated: 2023/01/30 12:44:25 by cbijman       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 
 # Flags
 CFLAGS = -Wall -Wextra -Werror
-DFLAGS = -g -fsanitize=address
+DFLAGS = -g
 OPENGL_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 # Colours
@@ -24,12 +24,16 @@ GREEN = \033[0;92m
 # Files
 INCLUDE =./include
 
-HEADER = ./include/so_long.h
+HEADER = ./include/so_long.h \
+		./include/libft.h \
+		./include/MLX42.h \
+		./include/MLX42_Input.h \
 
 SRC =	ft_main.c \
 		ft_vector.c \
 		ft_player.c \
 		ft_draw_utils.c \
+		ft_animation.c \
 		ft_map.c \
 		ft_map_helpers.c \
 		ft_map_validation.c \
@@ -45,19 +49,14 @@ LIBS =	libft/libft.a \
 # Rules
 
 bin/%.o: src/%.c $(HEADER)
-	@gcc -I$(INCLUDE) -o $@ -c $<
+	@gcc $(DFLAGS) -I$(INCLUDE) -o $@ -c $<
 	@echo "$(GREEN)Compiling: $(RESET)$<"
 
 $(NAME): $(OBJ)
 	@mkdir -p bin
-	@gcc -I$(INCLUDE) $(CFLAGS) $(OBJ) $(LIBS) $(OPENGL_FLAGS) -o $(NAME)
+	@gcc $(CFLAGS) $(DFLAGS) $(OBJ) $(LIBS) -I$(INCLUDE) $(OPENGL_FLAGS) -o $(NAME)
 
-test: $(OBJ)
-	@mkdir -p bin
-	@gcc -I$(INCLUDE) $(DFLAGS) $(OBJ) $(LIBS) $(OPENGL_FLAGS) -o $(NAME)
-
-
-all: $(NAME)
+all: lib $(NAME)
 
 lib:
 	@$(MAKE) -C MLX42 all

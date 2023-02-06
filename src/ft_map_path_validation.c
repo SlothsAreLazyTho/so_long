@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/19 14:51:34 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/19 15:42:52 by macbook       ########   odam.nl         */
+/*   Updated: 2023/02/06 15:10:49 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	validate_path(t_map *map)
 {
-	
+	return (1);
 }

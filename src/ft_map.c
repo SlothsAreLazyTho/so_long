@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 16:08:25 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:15:36 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/01/30 12:48:22 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_map	*create_map(char *filename)
 	t_map	*map;
 	int		fd;
 
-	map = malloc(sizeof(t_map));
+	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		return (NULL);
 	if (!validate_filename(filename, map))
