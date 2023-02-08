@@ -6,7 +6,7 @@
 #    By: macbook <macbook@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
-#    Updated: 2023/01/30 12:44:25 by cbijman       ########   odam.nl          #
+#    Updated: 2023/02/08 17:34:46 by cbijman       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC =	ft_main.c \
 		ft_player.c \
 		ft_draw_utils.c \
 		ft_animation.c \
+		ft_file_helpers.c \
 		ft_map.c \
 		ft_map_helpers.c \
 		ft_map_validation.c \

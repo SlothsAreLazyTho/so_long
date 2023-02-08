@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 16:08:25 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/30 12:48:22 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/08 17:34:13 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,9 @@ static void	*process_map_line(t_map *map, char *str, int i)
 
 int	validate_filename(char *filename, t_map *map)
 {	
-	int		i;
-	char	**splitted;
-
-	i = 0;
 	if (ft_strncmp(&filename[ft_strlen(filename) - 4], FILE_EXTENSION, 4) != 0)
 		return (0);
-	if (!ft_strrchr(filename, '/'))
-	{
-		map->filename = ft_strdup(filename);
-		return (1);
-	}
-	splitted = ft_split(filename, '/');
-	while (splitted[i])
-		i++;
-	map->filename = ft_strdup(splitted[i - 1]);
-	while (i--)
-		free(splitted[i]);
-	return (free(splitted), 1);
+	return (1);
 }
 
 t_map	*create_map(char *filename)
@@ -61,9 +46,8 @@ t_map	*create_map(char *filename)
 		return (NULL);
 	if (!validate_filename(filename, map))
 		return (NULL);
-	map->width = 0;
 	map->height = get_map_size(filename);
-	map->layout = malloc((map->height + 1) * sizeof(char *));
+	map->layout = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->layout)
 		return (NULL);
 	map->coins = malloc(get_map_object(filename, 'C') * sizeof(t_coin));

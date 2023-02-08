@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:50:50 by macbook       #+#    #+#                 */
-/*   Updated: 2023/02/06 15:12:17 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/08 17:12:22 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 # define TILE_SIZE		96
 # define TILE_W			32
 
-typedef enum	e_direction
+typedef enum e_direction
 {
-	PLAYER_DOWN	 = 0,
-	PLAYER_LEFT	 = 3,
-	PLAYER_UP	 = 2,
+	PLAYER_DOWN	= 0,
 	PLAYER_RIGHT = 1,
-} t_player_direction;
+	PLAYER_UP	= 2,
+	PLAYER_LEFT	= 3,
+}	t_player_direction;
 
 typedef struct s_vector
 {
@@ -48,7 +48,6 @@ typedef struct s_player
 	int					moves;
 	mlx_image_t			*bottom_image;
 	mlx_image_t			*upper_image;
-	t_vector			*position;
 	t_player_direction	e_direction;
 }	t_player;
 
@@ -58,16 +57,18 @@ typedef struct s_map
 	t_coin		*coins;
 	t_player	*player;
 	mlx_image_t	**images;
-	char		**layout;
 	char		*filename;
+	char		**layout;
 	int			width;
 	int			height;
 }	t_map;
 
-
 //Map
 t_map		*load_map(char *filename);
 void		free_map(t_map *map);
+
+//Helpers
+char		*get_file_name(char *filename);
 
 //Map info
 int			get_map_size(char *filename);
@@ -82,7 +83,6 @@ int			validate_path(t_map *map);
 int			validate_borders(t_map *map);
 int			validate_objects(t_map *map);
 int			validate_filename(char *filename, t_map *map);
-
 
 //MLX42 Graphics stuff related.
 int			open_window(t_map *map);

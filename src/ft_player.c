@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/24 15:44:17 by macbook       #+#    #+#                 */
-/*   Updated: 2023/02/06 15:35:53 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/08 16:28:34 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_player	*initialize_player(t_map *map)
 	position = get_object_coords_from_map(map, 'P');
 	if (!position)
 		return (perror("Error"), NULL);
-	player->position = position;
 	player->e_direction = PLAYER_LEFT;
 	player->bottom_image = draw_tile(map->handle, 32, 32, create_vector(0, 0));
 	player->upper_image = get_sprite_from_map(map, PLAYER_ASSET, 0, PLAYER_LEFT);

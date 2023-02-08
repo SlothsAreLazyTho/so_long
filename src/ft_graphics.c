@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 17:47:36 by macbook       #+#    #+#                 */
-/*   Updated: 2023/02/06 15:40:23 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/08 16:26:14 by cbijman       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ mlx_image_t	*get_sprite_from_map(t_map *map, char *fname, int column, int row)
 {
 	//const uint32_t	xy[2] = {96 * 1, 96 * row};
 	//const uint32_t	wh[2] = {96, 96};
-	const uint32_t	xy[2] = {50, 20};
+	const uint32_t	xy[2] = {32, 48};
 	const uint32_t	wh[2] = {64, 64};
 	mlx_texture_t	*tex;
 	mlx_image_t		*img;
@@ -104,7 +104,7 @@ int	open_window(t_map *map)
 	//map->handle = mlx_init(map->width * 32, map->height * 32, "So Long!", true);
 	if (!map->handle)
 		return (1);
-	//draw_map(map, map->handle);
+	draw_map(map, map->handle);
 	if (!map->player)
 		map->player = initialize_player(map);
 	mlx_key_hook(map->handle, func, map);
