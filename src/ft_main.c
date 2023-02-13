@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 15:03:24 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:07:12 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/09 13:04:06 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	test(int argc, char **argv)
 
 int main(void)
 {
-	char *argv[] = { "so_long", "./maps/bigmap.ber" };
+	char *argv[] = { "so_long", "./maps/map.ber" };
 	return (test(2, argv)); //
 }

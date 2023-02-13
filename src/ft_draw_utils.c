@@ -6,7 +6,7 @@
 /*   By: cbijman <cbijman@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/25 16:01:31 by cbijman       #+#    #+#                 */
-/*   Updated: 2023/01/25 16:24:10 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/09 13:24:57 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,13 @@ void	mlx_draw_line(mlx_image_t *img, int y, int height)
 	ft_printf("[MLX42] Printing line from %d to %d\n", height, y);
 	y += 1;
 	while(--y)
-	{
-		#ifdef RELEASE
-			ft_printf("[DEBUG] [MLX42] Drawing pixel at X: %d, Y: %d\n", height, y);
-		#endif
 		mlx_put_pixel(img, height, y, 250);
-	}
 }
 
 void	mlx_draw_rectangle_coords(mlx_image_t *img, int x, int y, int width, int height)
 {
-	int xy[2] = { x, y };
-	int wh[2] = { width, height };
+	const int xy[2] = { x, y };
+	const int wh[2] = { width, height };
 	mlx_draw_rectangle(img, xy, wh);
 }
 

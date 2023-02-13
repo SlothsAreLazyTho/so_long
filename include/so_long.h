@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:50:50 by macbook       #+#    #+#                 */
-/*   Updated: 2023/02/08 17:12:22 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/09 14:40:26 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "MLX42.h"
 # include <stdlib.h>
+# include <stdbool.h>
 
 # define DEBUG
 # define FILE_EXTENSION ".ber"
@@ -40,7 +41,7 @@ typedef struct s_coin
 {
 	t_vector	*position;
 	mlx_image_t	*image;
-	int			enabled;
+	bool		enabled;
 }	t_coin;
 
 typedef struct s_player
@@ -63,6 +64,9 @@ typedef struct s_map
 	int			height;
 }	t_map;
 
+//Debug
+mlx_image_t	*draw_player(mlx_t *mlx, t_vector *vec);
+
 //Map
 t_map		*load_map(char *filename);
 void		free_map(t_map *map);
@@ -77,12 +81,12 @@ int			get_map_object_from_map(t_map *map, char object);
 t_vector	*get_object_coords_from_map(t_map *map, char obj);
 
 //Validation
-int			validate_map(t_map *map);
-int			validate_size(t_map *map);
-int			validate_path(t_map *map);
-int			validate_borders(t_map *map);
-int			validate_objects(t_map *map);
-int			validate_filename(char *filename, t_map *map);
+bool		validate_map(t_map *map);
+bool		validate_size(t_map *map);
+bool		validate_path(t_map *map);
+bool		validate_borders(t_map *map);
+bool		validate_objects(t_map *map);
+bool		validate_filename(char *filename, t_map *map);
 
 //MLX42 Graphics stuff related.
 int			open_window(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 16:08:25 by macbook       #+#    #+#                 */
-/*   Updated: 2023/02/08 17:34:13 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/09 13:29:30 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ static void	*process_map_line(t_map *map, char *str, int i)
 	return (map->layout[i]);
 }
 
-int	validate_filename(char *filename, t_map *map)
-{	
-	if (ft_strncmp(&filename[ft_strlen(filename) - 4], FILE_EXTENSION, 4) != 0)
-		return (0);
-	return (1);
-}
-
 t_map	*create_map(char *filename)
 {
 	t_map	*map;
@@ -46,6 +39,7 @@ t_map	*create_map(char *filename)
 		return (NULL);
 	if (!validate_filename(filename, map))
 		return (NULL);
+	map->filename = get_file_name(filename);
 	map->height = get_map_size(filename);
 	map->layout = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->layout)

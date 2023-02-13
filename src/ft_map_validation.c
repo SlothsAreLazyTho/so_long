@@ -6,14 +6,14 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/16 13:06:18 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/24 17:45:56 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/09 13:24:10 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdlib.h>
 
-int	validate_size(t_map *map)
+bool	validate_size(t_map *map)
 {
 	int	i;
 	int	size;
@@ -26,52 +26,52 @@ int	validate_size(t_map *map)
 	{
 		size = ft_strlen(map->layout[i]);
 		if (last_size != size)
-			return (0);
+			return (false);
 		last_size = size;
 	}
-	return (1);
+	return (true);
 }
 
-int	validate_borders(t_map *map)
+bool	validate_borders(t_map *map)
 {
 	int	i;
 
 	i = -1;
 	while (++i < map->height)
 	{
-		if (i == 0 || i == (map->height - 1))
+		if ((i == 0 || i == (map->height - 1)) \
+			&& ft_strchr(map->layout[i], '0'))
 		{
-			if (ft_strchr(map->layout[i], '0'))
-				return (0);
+			return (false);
 		}
 		if (i != 0 || i != (map->height - 1))
 		{
 			if (map->layout[i][0] == '0'
 				|| map->layout[i][map->width - 1] == '0')
-				return (0);
+				return (false);
 		}
 	}
-	return (1);
+	return (true);
 }
 
-int	validate_objects(t_map *map)
+bool	validate_objects(t_map *map)
 {
 	if (get_map_object_from_map(map, 'P') != 1)
-		return (0);
+		return (false);
 	if (get_map_object_from_map(map, 'E') != 1)
-		return (0);
+		return (false);
 	if (get_map_object_from_map(map, 'C') <= 0)
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
-int	validate_map(t_map *map)
+bool	validate_map(t_map *map)
 {
 	if (!validate_size(map))
-		return (0);
+		return (false);
 	if (!validate_borders(map))
-		return (0);
+		return (false);
 	if (!validate_objects(map))
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: macbook <macbook@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/16 13:26:57 by macbook       #+#    #+#                  #
-#    Updated: 2023/02/08 17:34:46 by cbijman       ########   odam.nl          #
+#    Updated: 2023/02/09 13:29:16 by macbook       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 # Flags
 CFLAGS = -Wall -Wextra -Werror
 DFLAGS = -g
-OPENGL_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+OPENGL_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 # Colours
 RESET = \033[0m
@@ -58,6 +58,9 @@ $(NAME): $(OBJ)
 	@gcc $(CFLAGS) $(DFLAGS) $(OBJ) $(LIBS) -I$(INCLUDE) $(OPENGL_FLAGS) -o $(NAME)
 
 all: lib $(NAME)
+
+norm:
+	norminette -R CheckForbiddenSourceHeader src/
 
 lib:
 	@$(MAKE) -C MLX42 all

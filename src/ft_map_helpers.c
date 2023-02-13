@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/19 15:54:26 by macbook       #+#    #+#                 */
-/*   Updated: 2023/01/26 17:44:41 by cbijman       ########   odam.nl         */
+/*   Updated: 2023/02/09 13:10:35 by macbook       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,16 @@ t_vector	*get_object_coords_from_map(t_map *map, char obj)
 	vec = create_vector(0, 0);
 	if (!vec)
 		return (NULL);
-	while (map->layout[i] != NULL)
+	while (map->layout[i])
 	{
 		j = 0;
 		while (map->layout[i][j])
 		{
 			if (map->layout[i][j] == obj)
 			{
-				vec->x = j;
-				vec->y = i;
+				vec->x = (j * 32);
+				vec->y = (i * 32);
+				ft_printf("Location: X: %d\tY: %d\n", vec->x, vec->y);
 				return (vec);
 			}
 			j++;
